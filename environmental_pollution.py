@@ -3,18 +3,18 @@ from polluting_countries import PollutingCountries
 
 def high_or_low(country, avg, approach, type):
     approaches_dict = {
-        "e": country.emision_co2,
-        "m": country.mortality_rate,
-        "l": country.life_expectency,
-        "p": country.pbi
+        "e": [country.emision_co2, 0],
+        "m": [country.mortality_rate, 1],
+        "l": [country.life_expectency, 2],
+        "p": [country.pbi, 3]
     }
     for k, v in approaches_dict.items():
         if k == approach:
             if type == "h":
-                if v >= avg:
+                if v[0] >= avg[v[1]]:
                     return country.name
             elif type == "l":
-                if v < avg:
+                if v[0] < avg[v[1]]:
                     return country.name
 
 def clasification(avg, list):
@@ -23,10 +23,10 @@ def clasification(avg, list):
     high_life, low_life= set(), set()
     high_pbi, low_pbi = set(), set()
     for i in  list:
-        high_emision.add(high_or_low(i, avg[0], "e", "h")), low_emision.add(high_or_low(i, avg[0], "e", "l"))
-        high_mortality.add(high_or_low(i, avg[1], "m", "h")), low_mortality.add(high_or_low(i, avg[1], "m", "l"))
-        high_life.add(high_or_low(i, avg[2], "l", "h")), low_life.add(high_or_low(i, avg[2], "l", "l"))
-        high_pbi.add(high_or_low(i, avg[3], "p", "h")), low_pbi.add(high_or_low(i, avg[3], "p", "l"))
+        high_emision.add(high_or_low(i, avg, "e", "h")), low_emision.add(high_or_low(i, avg, "e", "l"))
+        high_mortality.add(high_or_low(i, avg, "m", "h")), low_mortality.add(high_or_low(i, avg, "m", "l"))
+        high_life.add(high_or_low(i, avg, "l", "h")), low_life.add(high_or_low(i, avg, "l", "l"))
+        high_pbi.add(high_or_low(i, avg, "p", "h")), low_pbi.add(high_or_low(i, avg, "p", "l"))
     data_set = [
         high_emision, low_emision,
         high_mortality, low_mortality, 
