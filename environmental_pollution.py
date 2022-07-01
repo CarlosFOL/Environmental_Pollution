@@ -18,7 +18,7 @@ CO2 EMISSIONS IN COUNTRIES VS OTHERS FACTORS
 
 Countries with...
 High CO2 emissions and high GDP: {func(*args, **kwargs)[0].intersection(func(*args, **kwargs)[6])}
-High GDP and low CO2 emissions: {func(*args, **kwargs)[6].intersection(func(*args, **kwargs)[2])}
+Low CO2 emissions and high life expectency: {func(*args, **kwargs)[1].intersection(func(*args, **kwargs)[4])}
 High mortality rate and high CO2 emissions: {func(*args, **kwargs)[2].intersection(func(*args, **kwargs)[0])}
 -----------------------------------------------------------------
 """)
