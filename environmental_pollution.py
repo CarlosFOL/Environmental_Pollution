@@ -1,13 +1,13 @@
 from datetime import datetime
 from functools import reduce
 from polluting_countries import PollutingCountries
-import pytz
 from typing import Dict, List, Tuple
+import pytz
 
 def report(func):
     def wrapper(*args, **kwargs) -> str:
         lima_pytz = pytz.timezone("America/Lima")
-        lima_time = datetime.now(lima_pytz)
+        lima_time = datetime.now(lima_pytz).strftime("%d/%m/%Y ,%H:%M:%S")
         univ_time = datetime.utcnow()
         print(f"""Lima, Peru: {lima_time}
 Universal time: {univ_time}""")
@@ -25,7 +25,7 @@ High mortality rate and high CO2 emissions: {func(*args, **kwargs)[2].intersecti
         print("Finished :)")
     return wrapper
 
-def cleaning_data(data_sets: List[set(str)]) -> List[set(str)]:
+def cleaning_data(data_sets: List[set[str]]) -> List[set[str]]:
     for i in data_sets:
         i.discard(None)
     return data_sets
@@ -47,7 +47,7 @@ def high_or_low(country: object, avg: Tuple[float], approach: str, type: str) ->
                     return country.name
 
 @report
-def clasification(avg: Tuple[float], list: List[object]) -> List[set(str)]:
+def clasification(avg: Tuple[float], list: List[object]) -> List[set[str]]:
     high_emision, low_emision = set(), set()
     high_mortality, low_mortality = set(), set()
     high_life, low_life= set(), set()
