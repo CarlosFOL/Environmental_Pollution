@@ -1,8 +1,8 @@
 from datetime import datetime
 from functools import reduce
 from polluting_countries import PollutingCountries
-from typing import Dict, List, Tuple
 import pytz
+from typing import Dict, List, Tuple
 
 def report(func):
     def wrapper(*args, **kwargs) -> str:
