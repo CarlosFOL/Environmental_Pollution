@@ -1,9 +1,16 @@
+from datetime import datetime
 from functools import reduce
 from polluting_countries import PollutingCountries
+import pytz
 from typing import Dict, List, Tuple
 
 def report(func):
     def wrapper(*args, **kwargs) -> str:
+        lima_pytz = pytz.timezone("America/Lima")
+        lima_time = datetime.now(lima_pytz)
+        univ_time = datetime.utcnow()
+        print(f"""Lima, Peru: {lima_time}
+Universal time: {univ_time}""")
         print("By calculating the results...")
         print(f"""
 ----------------------------------------------------------------
